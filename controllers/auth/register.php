@@ -1,5 +1,5 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['user'])) {
@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
 }
 
 // Include DB connection
-require_once 'config.php'; 
+require_once 'config.php';
 
 $errors = [];
 
@@ -31,6 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['email'] = 'Email is not valid';
     }
 
+    // Check if email already exists
+    $stmt = $conn->prepare('SELECT * FROM `admin` WHERE email = ? LIMIT 1');
+    $stmt->execute([$email]);
+    $existing_user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($existing_user) {
+        $errors['email'] = 'Email already exists';
+    }
+
     if (empty($password) || strlen($password) < 6) {
         $errors['password'] = 'Password should be at least 6 characters long';
     }
@@ -39,10 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['password_confirmation'] = 'Password confirmation does not match';
     }
 
-    // ✅ If no errors, insert into DB
+    // If no errors, insert into DB
     if (empty($errors)) {
         require_once 'config.php'; // Ensure $pdo exists
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+
 
         $stmt = $conn->prepare('INSERT INTO `admin` (username, email, password) VALUES (?, ?, ?)');
         $stmt->execute([$username, $email, $hashed_password]);
@@ -65,5 +75,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Load the view (after logic)
+// Load the view 
 require 'views/auth/register.view.php';
