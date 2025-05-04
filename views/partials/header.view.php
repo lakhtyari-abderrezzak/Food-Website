@@ -19,58 +19,75 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="bg-gray-100">
+<body class="h-screen bg-gray-100">
 
     <!-- Navbar Section Starts Here -->
     <nav class="bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="/">
-                        <img class="h-10 w-auto" src="/images/logo.png" alt="Restaurant Logo">
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                    <a href="/categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
-                    <a href="/food" class="text-gray-700 hover:text-blue-600 font-medium">Foods</a>
-                    <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                </div>
-
-                <!-- Auth Buttons -->
-                <div class="hidden md:flex items-center space-x-4">
-                    
-                    <?php if (isset($_SESSION['user'])): ?>
-                        <a href="/logout" class="text-gray-700 hover:text-blue-600 font-medium">Logout</a>
-                    <?php else: ?>
-                        <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
-                        <a href="/register" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Register</a>
-                    <?php endif; ?>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
-                        <i class="fas fa-bars fa-lg"></i>
-                    </button>
-                </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="/">
+                    <img class="h-10 w-auto" src="/images/logo.png" alt="Restaurant Logo">
+                </a>
             </div>
-        </div>
 
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-            <div class="flex flex-col space-y-2 p-4">
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
                 <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a href="/categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
                 <a href="/food" class="text-gray-700 hover:text-blue-600 font-medium">Foods</a>
                 <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
-                <a href="/register"
-                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-center">Register</a>
+            </div>
+
+            <!-- Right Side (Cart + Auth) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- Cart Icon -->
+                <a href="/cart" class="relative">
+                    <i class="fas fa-shopping-cart text-gray-700 text-xl"></i>
+                    <?php $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                    <?php if ($cartCount > 0): ?>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                            <?= $cartCount ?>
+                        </span>
+                    <?php endif; ?>
+                </a>
+
+                <!-- Auth Buttons -->
+                <?php if (isset($_SESSION['user'])): ?>
+                    <a href="/logout" class="text-gray-700 hover:text-blue-600 font-medium">Logout</a>
+                <?php else: ?>
+                    <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
+                    <a href="/register" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Register</a>
+                <?php endif; ?>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+        <div class="flex flex-col space-y-2 p-4">
+            <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+            <a href="/categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
+            <a href="/food" class="text-gray-700 hover:text-blue-600 font-medium">Foods</a>
+            <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+            <a href="/cart" class="text-gray-700 hover:text-blue-600 font-medium">
+                <i class="fas fa-shopping-cart"></i> Cart (<?= $cartCount ?>)
+            </a>
+            <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
+            <a href="/register" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-center">Register</a>
+        </div>
+    </div>
+</nav>
+
     <!-- Navbar Section Ends Here -->
+
+<main class="min-h-2/3">
+
