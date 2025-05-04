@@ -1,3 +1,6 @@
+</main>
+
+<!-- Footer sction  -->
 <footer class="bg-gray-900 text-gray-300 py-8">
     <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
 
