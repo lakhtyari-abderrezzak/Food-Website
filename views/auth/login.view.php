@@ -35,7 +35,7 @@ require_once 'views/partials/header.view.php';
                     <input type="checkbox" name="remember" id="remember">
                     <label for="remember" class="text-gray-600">Remember Me</label>
                 </div>
-                <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
+                <a href="/forgot-password" class="text-blue-600 hover:underline">Forgot Password?</a>
             </div>
 
             <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
