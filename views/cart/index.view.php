@@ -1,7 +1,8 @@
-<?php
-session_start();
+<?php 
 
-require_once './views/partials/header.view.php';    
+require_once './bootstrap.php';
+require_once 'views/partials/header.view.php';
+ 
 
 $_SESSION['cart'] = [['id' => 1, 'name' => 'Pizza', 'price' => 10, 'qty' => 2],];
 
