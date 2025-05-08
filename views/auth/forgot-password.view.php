@@ -12,7 +12,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/reset-password" method="POST" class="space-y-6">
+            <form action="/send-reset-password" method="POST" class="space-y-6">
                 <div>
                     <label for="email" class="block text-gray-700 mb-2">Email Address</label>
                     <input type="email" name="email" id="email" required
