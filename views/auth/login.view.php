@@ -14,8 +14,8 @@ require_once 'views/partials/header.view.php';
                 <label for="email" class="block text-gray-700">Email</label>
                 <input type="email" name="email" id="email" 
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['email'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['email']; ?></p>
+                <?php if (isset($_SESSION['login_errors']['email'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['login_errors']['email']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -23,17 +23,17 @@ require_once 'views/partials/header.view.php';
                 <label for="password" class="block text-gray-700">Password</label>
                 <input type="password" name="password" id="password" 
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['password'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['password']; ?></p>
+                <?php if (isset($_SESSION['login_errors']['password'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['login_errors']['password']; ?></p>
                 <?php endif; ?>
             </div>
-            <?php if (isset($_SESSION['errors']['login'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['login']; ?></p>
+            <?php if (isset($_SESSION['login_errors']['login'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['login_errors']['login']; ?></p>
                 <?php endif; ?>
             <div class="flex justify-between items-center text-sm">
                 <div>
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember" class="text-gray-600">Remember Me</label>
+                    <input type="checkbox" name="remember_me" id="remember_me">
+                    <label for="remember_me" class="text-gray-600">Remember Me</label>
                 </div>
                 <a href="/forgot-password" class="text-blue-600 hover:underline">Forgot Password?</a>
             </div>
