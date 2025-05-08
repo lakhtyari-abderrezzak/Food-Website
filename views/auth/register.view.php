@@ -12,8 +12,8 @@ require_once 'views/partials/header.view.php';
                 <label for="name" class="block text-gray-700">Name</label>
                 <input type="text" name="name" id="name" value="<?php echo isset($_SESSION['old']['name']) ? htmlspecialchars($_SESSION['old']['name']) : ''; ?>"
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['name'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['name']; ?></p>
+                <?php if (isset($_SESSION['register_errors']['name'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['register_errors']['name']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -21,8 +21,8 @@ require_once 'views/partials/header.view.php';
                 <label for="email" class="block text-gray-700">Email</label>
                 <input type="email" name="email" id="email" value="<?php echo isset($_SESSION['old']['email']) ? htmlspecialchars($_SESSION['old']['email']) : ''; ?>"
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['email'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['email']; ?></p>
+                <?php if (isset($_SESSION['register_errors']['email'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['register_errors']['email']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -30,8 +30,8 @@ require_once 'views/partials/header.view.php';
                 <label for="password" class="block text-gray-700">Password</label>
                 <input type="password" name="password" id="password"
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['password'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['password']; ?></p>
+                <?php if (isset($_SESSION['register_errors']['password'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['register_errors']['password']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -39,8 +39,8 @@ require_once 'views/partials/header.view.php';
                 <label for="password_confirmation" class="block text-gray-700">Confirm Password</label>
                 <input type="password" name="password_confirmation" id="password_confirmation"
                     class="w-full mt-1 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <?php if (isset($_SESSION['errors']['password_confirmation'])): ?>
-                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['errors']['password_confirmation']; ?></p>
+                <?php if (isset($_SESSION['register_errors']['password_confirmation'])): ?>
+                    <p class="text-red-500 text-sm mt-1"><?php echo $_SESSION['register_errors']['password_confirmation']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -57,7 +57,7 @@ require_once 'views/partials/header.view.php';
 </div>
 
 <?php
-unset($_SESSION['errors']);
+unset($_SESSION['register_errors']);
 unset($_SESSION['old']);
 ?>
 <?php require_once 'views/partials/footer.view.php'; ?>
