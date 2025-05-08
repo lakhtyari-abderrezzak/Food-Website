@@ -1,7 +1,7 @@
 <?php 
 
 
-$router->add('/', 'controllers/guest.php');
+$router->add('/', 'controllers/welcome.php');
 
 // categories routes
 $router->add('/categories', 'controllers/categories/index.php');
@@ -29,4 +29,9 @@ $router->add('/logout', 'controllers/auth/logout.php');
 $router->add('/register', 'controllers/auth/register.php');
 
 $router->add('/forgot-password', 'controllers/auth/forgot-password.php');
-$router->add('/reset-password', 'controllers/auth/send-reset-password.php');
+$router->add('/send-reset-password', 'controllers/auth/send-reset-password.php');
+$router->add('/reset-password', 'controllers/auth/reset-password.php');
+$router->add('/process-reset-password', 'controllers/auth/process-reset-password.php');
+$router->add('/activation', 'controllers/auth/account-activation.php');
+$router->add('/register-success', 'controllers/auth/register-success.php');
+$router->add('/activation-success', 'controllers/auth/activation-success.php');
