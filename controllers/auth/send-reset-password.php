@@ -10,8 +10,6 @@ $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
 $mysqli = require './config.php';
 
-// Update the reset token in the database only if the email exists and the token is different from the current one
-// This prevents the token from being updated if the same token is sent again
 
 $sql = "Update admin SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?";
 $stmt = $conn->prepare($sql);
@@ -20,7 +18,7 @@ $stmt->execute([$token_hash, $expires, $email]);
 if ($stmt->rowCount() > 0) {
     require_once  './controllers/mail.php';
 
-    $reset_link = 'http://localhost/food/reset-password?token=' . $token;
+    $reset_link = 'http://localhost:8888/reset-password?token=' . $token;
     $mail->setFrom('acmem04@gmail.com', 'Food App');
     $mail->addAddress($email);
     $mail->Subject = 'Password Reset Request';
