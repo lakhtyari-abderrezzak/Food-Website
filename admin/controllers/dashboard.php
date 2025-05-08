@@ -1,8 +1,12 @@
 <?php
 
-require './middleware/AuthMiddleware.php';
+session_start();
+
+
 
 use Middleware\AuthMiddleware;
+
+require './middleware/AuthMiddleware.php';
 
 $auth = new AuthMiddleware();
 
