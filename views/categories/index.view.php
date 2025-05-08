@@ -1,4 +1,9 @@
-<?php require './views/partials/header.view.php'; ?>
+<?php 
+
+require_once './bootstrap.php';
+require './views/partials/header.view.php'; 
+
+?>
 
 <section class="py-12 bg-gray-100">
     <div class="container mx-auto px-4">
