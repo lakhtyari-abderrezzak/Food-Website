@@ -1,4 +1,8 @@
-<?php require_once './views/partials/header.view.php'; ?>
+<?php 
+require_once './bootstrap.php';
+require_once 'views/partials/header.view.php';
+?>
+
 
 <?php if (isset($food)) : ?>
     <section class="py-12 bg-gray-100">
