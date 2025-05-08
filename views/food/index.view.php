@@ -1,4 +1,8 @@
-<?php require_once 'views/partials/header.view.php'; ?>
+<?php 
+require_once './bootstrap.php';
+require_once 'views/partials/header.view.php';
+?>
+
 
 <!-- Food Menu Section -->
 <section class="py-16 bg-gray-50">
