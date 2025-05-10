@@ -16,7 +16,13 @@ $router->add('/contact', 'controllers/contact.php');
 
 // Admin routes
 $router->add('/dashboard', 'admin/controllers/dashboard.php');
-
+// Admin food routes 
+$router->add('/dashboard/foods', 'admin/controllers/food/index.php');
+$router->add('/dashboard/foods/create', 'admin/controllers/food/create.php');
+$router->add('/dashboard/foods/store', 'admin/controllers/food/store.php');
+$router->add('/dashboard/foods/edit', 'admin/controllers/food/edit.php');
+$router->add('/dashboard/foods/update', 'admin/controllers/food/update.php');
+$router->add('/dashboard/foods/delete', 'admin/controllers/food/delete.php');
 
 // Cart routes
 $router->add('/cart', 'controllers/cart/index.php');
