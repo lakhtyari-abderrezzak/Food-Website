@@ -35,11 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Also check if the account is activated (account_activation_hash is null)
     if ($user && password_verify($password, $user['password']) && $user['account_activation_hash'] === null) {
 
-        $_SESSION['user'] = [
+        $user = [
             'name' => $user['name'],
             'email' => $user['email']
         ];
 
+        $_SESSION['user'] = $user;
+        
         if ($remember_me) {
             // Generate a random selector and validator
             $selector = bin2hex(random_bytes(6));
