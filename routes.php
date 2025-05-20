@@ -24,6 +24,14 @@ $router->add('/dashboard/foods/edit', 'admin/controllers/food/edit.php');
 $router->add('/dashboard/foods/update', 'admin/controllers/food/update.php');
 $router->add('/dashboard/foods/delete', 'admin/controllers/food/delete.php');
 
+// Admin Categories routes
+$router->add('/dashboard/categories', 'admin/controllers/categories/index.php');
+$router->add('/dashboard/categories/create', 'admin/controllers/categories/create.php');
+$router->add('/dashboard/categories/store', 'admin/controllers/categories/store.php');
+$router->add('/dashboard/categories/edit', 'admin/controllers/categories/edit.php');
+$router->add('/dashboard/categories/update', 'admin/controllers/categories/update.php');
+$router->add('/dashboard/categories/delete', 'admin/controllers/categories/delete.php');
+
 // Cart routes
 $router->add('/cart', 'controllers/cart/index.php');
 $router->add('/cart/add', 'controllers/cart/add.php');  
