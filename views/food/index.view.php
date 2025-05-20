@@ -14,11 +14,13 @@ require_once 'views/partials/header.view.php';
         <?php foreach ($foods as $food) : ?>
     <!-- Single Food Card -->
     <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-        <img 
-            src="images/<?php echo htmlspecialchars($food['image_name']); ?>" 
+        <a href="/food/show?id=<?= $food['id'] ?>" >
+            <img 
+            src="images/foods/<?php echo htmlspecialchars($food['image_name']); ?>" 
             alt="<?php echo htmlspecialchars($food['title']); ?>" 
             class="w-full h-48 object-cover"
         >
+        </a>
         <div class="p-6">
             <h4 class="text-xl font-bold mb-2">
                 <?php echo htmlspecialchars($food['title']); ?>
