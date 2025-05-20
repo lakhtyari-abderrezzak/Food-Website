@@ -13,7 +13,7 @@ require './views/partials/header.view.php';
             <?php foreach ($categories as $category) : ?>
                 <a href="/categories/show?id=<?php echo $category['id']; ?>" class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="/images/<?php echo htmlspecialchars($category['image_path']) ?? 'momo.jpg'; ?>" 
+                        <img src="<?= '/images/categories/' . htmlspecialchars($category['image_path']) ?? 'momo.jpg'; ?>" 
                              alt="<?php echo htmlspecialchars($category['title']); ?>" 
                              class="object-cover w-full h-full">
                     </div>
