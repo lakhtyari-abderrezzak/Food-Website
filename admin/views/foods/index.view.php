@@ -6,29 +6,51 @@ require_once 'admin/views/partials/header.view.php';
     <?php require_once dirname(__DIR__, 3) . '/views/components/success.view.php' ?>
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Food Management</h1>
-        <a href="/dashboard/foods/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">+ Add Food</a>
+        <a href="/dashboard/foods/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">+ Add
+            Food</a>
     </div>
 
     <div class="mb-4 flex items-center gap-4">
-        <input type="text" placeholder="Search food..." class="border p-2 rounded w-full md:w-1/3">
-        <select class="border p-2 rounded">
-            <option>All Categories</option>
-            <option>Main Course</option>
-            <option>Drinks</option>
-            <option>Desserts</option>
-        </select>
+        <form method="GET" class="mb-4">
+            <input type="text" name="search" placeholder="Search food..." class="border px-3 py-2 rounded"
+                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Search</button>
+        </form>
     </div>
 
     <table class="min-w-full bg-white border border-gray-200 rounded">
         <thead>
             <tr class="bg-gray-100 text-left text-sm font-semibold">
                 <th class="py-3 px-4">Image</th>
-                <th class="py-3 px-4">Name</th>
-                <th class="py-3 px-4">Category</th>
-                <th class="py-3 px-4">Price</th>
+
+                <th class="py-3 px-4">
+                    <a href="foods?sort_by=title">
+                        Name
+                        <i
+                            class="fa-solid fa-sort <?= (isset($_GET['sort_by']) && $_GET['sort_by'] === 'title') ? 'text-green-600' : 'text-gray-500' ?> cursor-pointer"></i>
+                    </a>
+                </th>
+
+                <th class="py-3 px-4">
+                    <a href="foods?sort_by=category_id">
+                        Category
+                        <i
+                            class="fa-solid fa-sort <?= (isset($_GET['sort_by']) && $_GET['sort_by'] === 'category_id') ? 'text-green-600' : 'text-gray-500' ?> cursor-pointer"></i>
+                    </a>
+                </th>
+
+                <th class="py-3 px-4">
+                    <a href="foods?sort_by=price">
+                        Price
+                        <i
+                            class="fa-solid fa-sort <?= (isset($_GET['sort_by']) && $_GET['sort_by'] === 'price') ? 'text-green-600' : 'text-gray-500' ?> cursor-pointer"></i>
+                    </a>
+                </th>
+
                 <th class="py-3 px-4">Status</th>
                 <th class="py-3 px-4">Actions</th>
             </tr>
+
         </thead>
         <tbody>
             <?php foreach ($foods as $food): ?>
