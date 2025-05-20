@@ -42,7 +42,7 @@ require_once 'admin/views/partials/header.view.php';
         <div>
             <label class="block text-gray-700">Current Image</label>
             <?php if ($food['image_name']): ?>
-                <img src="/images/<?= htmlspecialchars($food['image_name']) ?>"
+                <img src="<?= '/images/foods/' . htmlspecialchars($food['image_name']) ?>"
                     alt="<?= htmlspecialchars($food['title']) ?>" class="w-32 h-32 object-cover rounded mb-2">
             <?php else: ?>
                 <p class="text-sm text-gray-500">No image uploaded.</p>
@@ -67,7 +67,7 @@ require_once 'admin/views/partials/header.view.php';
 
         <div class="flex items-center gap-4">
             <label class="flex items-center">
-                <input type="checkbox" name="featured" value="Yes" <?= $food['featured'] === 'Yes' ? 'checked' : '' ?>>
+                <input type="checkbox" name="featured" value="Yes" <?= $food['featured'] === 1 ? 'checked' : '' ?>>
                 <span class="ml-2 text-gray-700">Featured</span>
                 <?php if (isset($_SESSION['errors']['featured'])): ?>
                     <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['errors']['featured']) ?></p>
@@ -76,7 +76,7 @@ require_once 'admin/views/partials/header.view.php';
             </label>
 
             <label class="flex items-center">
-                <input type="checkbox" name="active" value="Yes" <?= $food['active'] === 'Yes' ? 'checked' : '' ?>>
+                <input type="checkbox" name="active" value="Yes" <?= $food['active'] === 1 ? 'checked' : '' ?>>
                 <span class="ml-2 text-gray-700">Active</span>
                 <?php if (isset($_SESSION['errors']['active'])): ?>
                     <p class="text-red-500 text-sm mt-1"><?= htmlspecialchars($_SESSION['errors']['active']) ?></p>
