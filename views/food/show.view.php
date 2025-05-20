@@ -1,5 +1,4 @@
 <?php 
-require_once './bootstrap.php';
 require_once 'views/partials/header.view.php';
 ?>
 
@@ -10,7 +9,7 @@ require_once 'views/partials/header.view.php';
             
             <!-- Food Image -->
             <div class="md:w-1/2 h-64 md:h-auto">
-                <img src="/images/<?php echo $food['image_name'] ?? 'default.jpg'; ?>"
+                <img src="/images/foods/<?php echo $food['image_name'] ?? 'default.jpg'; ?>"
                      alt="<?php echo htmlspecialchars($food['title']); ?>"
                      class="w-full h-full object-cover">
             </div>
