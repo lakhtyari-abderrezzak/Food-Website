@@ -56,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $image_name = $new_image_name;
         }
+    }else {
+        $image_name = $current['image_name'];
     }
     // Update food item
     $stmt = $conn->prepare("UPDATE food SET title = ?, description = ?, price = ?, image_name = ?, category_id = ?, featured = ?, active = ? WHERE id = ?");
