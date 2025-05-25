@@ -89,5 +89,5 @@
 
     <!-- Navbar Section Ends Here -->
 
-<main class="min-h-2/3">
+<main class="min-h-screen">
 
