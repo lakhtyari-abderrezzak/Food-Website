@@ -10,6 +10,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 $name = $_POST['name'];
 $email = $_POST['email'];
 $address = $_POST['address'];
+$payment_method = $_POST['payment_method'];
 $cart = $_SESSION['cart'];
 $total = 0;
 
@@ -18,8 +19,8 @@ foreach ($cart as $item) {
 }
 
 // Insert into orders table
-$stmt = $conn->prepare("INSERT INTO orders (customer_name, customer_email, customer_address, total) VALUES (?, ?, ?, ?)");
-$stmt->execute([$name, $email, $address, $total]);
+$stmt = $conn->prepare("INSERT INTO orders (customer_name, customer_email, customer_address, total, payment_method) VALUES (?, ?, ?, ?, ?)");
+$stmt->execute([$name, $email, $address, $total, $payment_method]);
 $order_id = $conn->lastInsertId();
 
 // Insert order items
