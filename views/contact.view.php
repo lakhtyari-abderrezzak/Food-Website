@@ -5,12 +5,13 @@ require_once 'views/partials/header.view.php';
 
 <section class="py-16 bg-gray-100">
     <div class="container mx-auto px-6 md:px-12 lg:px-20">
+        <?php require_once __DIR__ . '\components/success.view.php' ?>
         <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
 
         <div class="grid md:grid-cols-2 gap-12 items-start">
 
             <!-- Contact Form -->
-            <form action="contact.php" method="POST" class="bg-white p-8 rounded-lg shadow-lg space-y-6">
+            <form action="send-message" method="POST" class="bg-white p-8 rounded-lg shadow-lg space-y-6">
                 <div>
                     <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
                     <input type="text" id="name" name="name" required
