@@ -13,6 +13,8 @@ $router->add('/food/show', 'controllers/food/show.php');
 
 // Conatact routes
 $router->add('/contact', 'controllers/contact.php');
+$router->add('/send-message', 'controllers/contact/send-message.php');
+
 
 // Admin routes
 $router->add('/dashboard', 'admin/controllers/dashboard.php');
@@ -34,7 +36,11 @@ $router->add('/dashboard/categories/delete', 'admin/controllers/categories/delet
 
 // Cart routes
 $router->add('/cart', 'controllers/cart/index.php');
-$router->add('/cart/add', 'controllers/cart/add.php');  
+$router->add('/add-to-cart', 'controllers/cart/add-to-cart.php');  
+$router->add('/remove-from-cart', 'controllers/cart/remove-from-cart.php');
+$router->add('/update-cart', 'controllers/cart/update-cart.php');
+$router->add('/checkout', 'controllers/cart/checkout.php');
+$router->add('/process-checkout', 'controllers/cart/process-checkout.php');
 
 
 // login and register routes
