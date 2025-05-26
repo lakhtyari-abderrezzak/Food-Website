@@ -20,7 +20,10 @@
         </div>
         <div class="mb-3">
             <label for="payment_method">Payment Method</label>
-            
+            <select name="payment_method" id="payment_method" class="w-full border px-3 py-2 rounded">
+                <option value="cod">Cash on Delivery</option>
+                <option value="collection">Pay on Collection</option>
+            </select>
         </div>
         <p class="mb-4 font-semibold">Total: $<?= number_format($total, 2) ?></p>
         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Place Order</button>
