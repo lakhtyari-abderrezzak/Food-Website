@@ -1,3 +1,5 @@
 .env
 images
 vendor
+config.php
+stipe_config.php
