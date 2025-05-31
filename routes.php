@@ -41,6 +41,7 @@ $router->add('/remove-from-cart', 'controllers/cart/remove-from-cart.php');
 $router->add('/update-cart', 'controllers/cart/update-cart.php');
 $router->add('/checkout', 'controllers/cart/checkout.php');
 $router->add('/process-checkout', 'controllers/cart/process-checkout.php');
+$router->add('/thank-you', 'controllers/cart/thank-you.php');
 
 
 // login and register routes
