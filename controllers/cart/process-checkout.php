@@ -1,4 +1,7 @@
 <?php
+// Initialize DB and session
+require_once './bootstrap.php';
+
 // Ensure required middleware file exists
 require_once dirname(__DIR__, 2) . '/middleware/CheckoutMiddleware.php';
 
@@ -6,14 +9,6 @@ require_once dirname(__DIR__, 2) . '/middleware/CheckoutMiddleware.php';
 $empty = new Middleware\CheckoutMiddleware();
 $empty->handle();
 
-// Initialize DB and session
-require_once './bootstrap.php';
-
-
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    header('Location: /cart.php');
-    exit;
-}
 
 // Collect form data
 $name = trim($_POST['name']);
@@ -46,7 +41,7 @@ foreach ($cart as $item) {
 
 // Send confirmation email
 require_once './controllers/mail.php';
- 
+
 $mail->setFrom('no-reply@food-app.com', 'Food App');
 $mail->addAddress($email, $name);
 $mail->Subject = 'Order Confirmation';
@@ -54,16 +49,48 @@ $mail->isHTML(true);
 $mail->CharSet = 'UTF-8';
 $mail->Body = require_once './views/emails/email-confirmation.view.php';
 
-try{
+try {
     // Send the email
     $mail->send();
 } catch (Exception $e) {
     // Log the error
     error_log("Mailer Error: {$mail->ErrorInfo}");
 }
+if ($payment_method === 'card') {
+    require_once 'controllers/stripe/stripe_config.php';
+
+    // Create checkout session
+    $checkout_session = \Stripe\Checkout\Session::create([
+        'line_items' => [
+            [
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'Food Order #' . $order_id,
+                    ],
+                    'unit_amount' => $total * 100, // Convert to cents
+                ],
+                'quantity' => 1,
+            ],
+        ],
+        'mode' => 'payment',
+        'success_url' => 'http://localhost:8888/thank-you?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url' => 'http://localhost:8888/cancel',
+        'metadata' => [
+            'order_id' => $order_id,
+            'customer_email' => $email
+        ]
+    ]);
+
+    // Redirect to Stripe payment page
+    header("Location: " . $checkout_session->url);
+    exit;
+
+}
+// If payment method is not card, proceed to thank you page
 
 // Clear cart
 unset($_SESSION['cart']);
 $_SESSION['message'] = "Thank you! Your order has been placed.";
-header("Location: /thank-you.php");
+header("Location: /thank-you");
 exit;
