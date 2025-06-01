@@ -1,4 +1,4 @@
 <?php
 require 'vendor/autoload.php'; 
 
-\Stripe\Stripe::setApiKey('YOUR_STRIPE_SECRET_KEY'); 
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']); 
