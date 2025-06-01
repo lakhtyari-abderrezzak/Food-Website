@@ -23,6 +23,7 @@
             <select name="payment_method" id="payment_method" class="w-full border px-3 py-2 rounded">
                 <option value="cod">Cash on Delivery</option>
                 <option value="collection">Pay on Collection</option>
+                <option value="card">Card</option>
             </select>
         </div>
         <p class="mb-4 font-semibold">Total: $<?= number_format($total, 2) ?></p>
