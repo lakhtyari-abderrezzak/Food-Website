@@ -1,5 +1,6 @@
 </main>
 
+
 <!-- Footer sction  -->
 <footer class="bg-gray-900 text-gray-300 py-8">
     <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
@@ -25,15 +26,9 @@
 
     </div>
 </footer>
-
-
 <script>
-    // Mobile menu toggle
-    const btn = document.getElementById('mobile-menu-button');
-    const menu = document.getElementById('mobile-menu');
-
-    btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+    document.getElementById('mobile-menu-button').addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 </script>
 
