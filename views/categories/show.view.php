@@ -14,7 +14,8 @@ require_once 'views/partials/header.view.php';
                     <a href="/food/show?id=<?php echo $food['id']; ?>"
                         class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="/images/<?php echo $food['image_name'] ?? 'momo.jpg'; ?>"
+                            <img src="/images/foods/<?php echo htmlspecialchars($food['image_name']); ?>" 
+                                 loading="lazy"
                                 alt="<?php echo htmlspecialchars($food['title']); ?>" class="object-cover w-full h-full">
                         </div>
                         <div class="p-4 text-center">
