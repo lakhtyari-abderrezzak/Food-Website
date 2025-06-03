@@ -1,93 +1,108 @@
+<?php
+function isActive($path) {
+    $currentPage = $_SERVER['REQUEST_URI'];
+
+    return str_contains($currentPage, $path) ? 'text-teal-800 font-semibold' : 'hover:text-teal-600';
+}
+
+$cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restaurant Website</title>
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-
-    <!-- Font Awesome CDN (Latest version) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-RXf+QSDCUQs6F1Ujae2t5ZCkFvU0QpXx+I5PywjO1t1hpXk1V9OyZyZ+f7FxGjTk3+7Lr3N9Zb6+czY3rjr3eg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="h-screen bg-gray-100">
+<body class="bg-slate-100 text-slate-800">
 
-    <!-- Navbar Section Starts Here -->
-    <nav class="bg-white shadow-md">
+<!-- Header / Navbar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <a href="/">
-                    <img class="h-10 w-auto" src="/images/logo.png" alt="Restaurant Logo">
+                <a href="/" aria-label="Go to homepage">
+                    <img src="/images/logo.png" alt="Restaurant Logo" class="h-10 w-auto">
                 </a>
             </div>
 
-            <!-- Navigation Links -->
-            <div class="hidden md:flex space-x-8">
-                <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                <a href="/categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
-                <a href="/food" class="text-gray-700 hover:text-blue-600 font-medium">Foods</a>
-                <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/" class="<?= isActive('/') ?> font-medium">Home</a>
+                <a href="/categories" class="<?= isActive('/categories') ?> font-medium">Categories</a>
+                <a href="/food" class="<?= isActive('/food') ?> font-medium">Foods</a>
+                <a href="/contact" class="<?= isActive('/contact') ?> font-medium">Contact</a>
             </div>
 
-            <!-- Right Side (Cart + Auth) -->
+            <!-- Cart & Auth (Desktop) -->
             <div class="hidden md:flex items-center space-x-6">
-                <!-- Cart Icon -->
-                <a href="/cart" class="relative">
-                    <i class="fas fa-shopping-cart text-gray-700 text-xl"></i>
-                    <?php $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                <!-- Cart -->
+                <a href="/cart" class="relative" aria-label="View cart">
+                    <i class="fas fa-shopping-cart text-xl"></i>
                     <?php if ($cartCount > 0): ?>
-                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
-                            <?= $cartCount ?>
+                        <span
+                            class="absolute -top-2 -right-2 bg-rose-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                            <?= htmlspecialchars($cartCount) ?>
                         </span>
                     <?php endif; ?>
                 </a>
 
-                <!-- Auth Buttons -->
+                <!-- Auth -->
                 <?php if (isset($_SESSION['user'])): ?>
-                    <a href="/logout" class="text-gray-700 hover:text-blue-600 font-medium">Logout</a>
+                    <a href="/logout" class="hover:text-teal-600 font-medium">Logout</a>
                 <?php else: ?>
-                    <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
-                    <a href="/register" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Register</a>
+                    <a href="/login" class="hover:text-teal-600 font-medium">Login</a>
+                    <a href="/register"
+                       class="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition">
+                        Register
+                    </a>
                 <?php endif; ?>
             </div>
 
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
-                    <i class="fas fa-bars fa-lg"></i>
-                </button>
-            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-slate-700" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars fa-2x"></i>
+            </button>
         </div>
     </div>
 
-    <!-- Mobile Menu (hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md transition-all">
         <div class="flex flex-col space-y-2 p-4">
-            <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-            <a href="/categories" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
-            <a href="/food" class="text-gray-700 hover:text-blue-600 font-medium">Foods</a>
-            <a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-            <a href="/cart" class="text-gray-700 hover:text-blue-600 font-medium">
-                <i class="fas fa-shopping-cart"></i> Cart (<?= $cartCount ?>)
+            <a href="/" class="<?= isActive('/') ?> font-medium">Home</a>
+            <a href="/categories" class="<?= isActive('/categories') ?> font-medium">Categories</a>
+            <a href="/food" class="<?= isActive('/food') ?> font-medium">Foods</a>
+            <a href="/contact" class="<?= isActive('/contact') ?> font-medium">Contact</a>
+            <a href="/cart" class="hover:text-teal-600 font-medium">
+                <i class="fas fa-shopping-cart mr-1"></i> Cart (<?= htmlspecialchars($cartCount) ?>)
             </a>
-            <a href="/login" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
-            <a href="/register" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-center">Register</a>
+            <?php if (isset($_SESSION['user'])): ?>
+                <a href="/logout" class="hover:text-teal-600 font-medium">Logout</a>
+            <?php else: ?>
+                <a href="/login" class="hover:text-teal-600 font-medium">Login</a>
+                <a href="/register"
+                   class="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 text-center transition">
+                    Register
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
 
-    <!-- Navbar Section Ends Here -->
 
+
+<!-- Main content -->
 <main class="min-h-screen">
-
