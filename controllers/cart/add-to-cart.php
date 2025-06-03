@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './bootstrap.php'; // Include DB if needed
+require_once './config.php'; 
 
 $food_id = $_POST['food_id'];
 $quantity = max(1, (int)$_POST['quantity']);
