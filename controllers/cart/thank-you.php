@@ -24,6 +24,12 @@ try {
         // Clear the cart 
         unset($_SESSION['cart']);
 
+        // Here you can also update the order status in your database if needed
+        require_once 'config.php';
+        $stmt = $conn->prepare("UPDATE orders SET payment_status = 'paid' WHERE id = ?");
+        $stmt->execute([$order_id]);
+
+
         // Redirect to thank you page
         require_once dirname(__DIR__, 2) . '/views/cart/thank-you.view.php';
 
