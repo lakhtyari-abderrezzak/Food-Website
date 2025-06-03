@@ -82,6 +82,8 @@ if ($payment_method === 'card') {
         ]
     ]);
 
+    unset($_SESSION['cart']);
+    
     // Redirect to Stripe payment page
     header("Location: " . $checkout_session->url);
     exit;
@@ -91,6 +93,6 @@ if ($payment_method === 'card') {
 
 // Clear cart
 unset($_SESSION['cart']);
-$_SESSION['message'] = "Thank you! Your order has been placed.";
-header("Location: /thank-you");
+
+require_once './views/cart/thank-you.view.php';
 exit;
