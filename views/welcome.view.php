@@ -3,19 +3,6 @@ require_once './bootstrap.php';
 require_once 'views/partials/header.view.php';
 ?>
 
-<!-- 🔍 Food Search Section -->
-<section class="bg-gradient-to-r from-blue-50 to-indigo-100 py-10">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-6">Find Your Favorite Meal</h2>
-        <form method="GET" class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-            <input type="text" name="search" placeholder="Search food..."
-                class="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
-                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-            <button type="submit"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition">Search</button>
-        </form>
-    </div>
-</section>
 
 <!-- 🗂️ Categories Section -->
 <section class="py-16 bg-white">
